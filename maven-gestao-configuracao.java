@@ -19,6 +19,8 @@ public class ContaDao {
 		manager.joinTransaction();
 		this.manager.persist(conta);
 	}
-
+public Conta busca(Integer id) {
+		return this.manager.find(Conta.class, id);
+	}
 	
 }
