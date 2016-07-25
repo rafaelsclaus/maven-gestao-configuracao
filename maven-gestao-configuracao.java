@@ -23,4 +23,9 @@ public Conta busca(Integer id) {
 		return this.manager.find(Conta.class, id);
 	}
 	
+public List<Conta> lista() {
+		return this.manager.createQuery("select c from Conta c", Conta.class)
+				.getResultList();
+	}
+	
 }
