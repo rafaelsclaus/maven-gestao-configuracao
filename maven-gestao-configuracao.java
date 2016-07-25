@@ -20,36 +20,5 @@ public class ContaDao {
 		this.manager.persist(conta);
 	}
 
-	public Conta busca(Integer id) {
-		return this.manager.find(Conta.class, id);
-	}
-
-	public List<Conta> lista() {
-		return this.manager.createQuery("select c from Conta c", Conta.class)
-				.getResultList();
-	}
-
-	public void remove(Conta conta) {
-		Conta contaParaRemover = this.manager.find(Conta.class, conta.getId());
-		manager.joinTransaction();
-		this.manager.remove(contaParaRemover);
-	}
-
-	public void altera(Conta conta) {
-		manager.joinTransaction();
-		manager.merge(conta);
-	}
-
-	
-	public int trocaNomeDoBancoEmLote(String antigoNomeBanco, String novoNomeBanco){
-		String jpql = "update Conta c set c.banco = :novoNome "
-				+ "where c.banco = :antigoNome";
-		
-		Query query = manager.createQuery(jpql);
-		query.setParameter("antigoNome", antigoNomeBanco);
-		query.setParameter("novoNome", novoNomeBanco);
-		
-		return query.executeUpdate();
-	}
 	
 }
